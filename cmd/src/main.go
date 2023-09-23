@@ -25,7 +25,7 @@ func main() {
 
 	indiceActual := 0
 	sucursalActual := sucursales[indiceActual]
-	cargaActual := 0
+	cargaActual := sucursales[indiceActual].demanda
 	recorrido = append(recorrido, sucursalActual)
 	visitadas[indiceActual] = true
 
