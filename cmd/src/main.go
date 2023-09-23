@@ -40,6 +40,7 @@ func main() {
 		recorrido = append(recorrido, sucursalActual)
 		visitadas[indiceActual] = true
 	}
+	imprimirResultado(recorrido) // Escribo el resultado en un archivo
 
 	// Imprimo el recorrido
 	fmt.Println("El largo del recorrido es:", len(recorrido))

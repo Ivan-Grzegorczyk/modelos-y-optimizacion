@@ -65,3 +65,23 @@ func moverseHasta(scanner *bufio.Scanner, line string) {
 	}
 	scanner.Scan()
 }
+
+func imprimirResultado(recorrido []sucursal) {
+	archivo, err := os.Create("entrega_primer_problema.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer func(archivo *os.File) {
+		err := archivo.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(archivo)
+
+	for _, sucursal := range recorrido {
+		_, err := archivo.WriteString(strconv.Itoa(sucursal.id) + " ")
+		if err != nil {
+			panic(err)
+		}
+	}
+}
