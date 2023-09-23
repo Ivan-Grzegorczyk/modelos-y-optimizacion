@@ -6,10 +6,9 @@ import (
 )
 
 type sucursal struct {
-	id       int
-	x, y     float64
-	demanda  int
-	visitada bool
+	id      int
+	x, y    float64
+	demanda int
 }
 
 func main() {

@@ -42,9 +42,8 @@ func cargarDatos(sucursales *[]sucursal, capacidad *int) {
 		linea := scanner.Text()
 		demandaNodo, _ := strconv.Atoi(strings.Split(linea, " ")[1])
 		*sucursales = append(*sucursales, sucursal{
-			id:       i,
-			visitada: false,
-			demanda:  demandaNodo,
+			id:      i,
+			demanda: demandaNodo,
 		})
 		scanner.Scan()
 	}
