@@ -24,7 +24,10 @@ mucho la complejidad del algoritmo, puede que en una próxima entrega lo intente
     Inicialmente, quise plantearlo armando un grafo y poniendo las distancias como los
     pesos de las aristas, pero se me complicó mucho implementarlo, por lo que decidí
     usar slices de Go. Se inicia de forma arbitraria por la primera sucursal planteada
-    en el archivo de texto.
+    en el archivo de texto. Distancia total recorrida: 8691.176773576135
+* Segunda entrega:
+    En lugar de iniciar el recorrido desde el primer punto del archivo, se calcula
+    cuál es más óptimo para el algoritmo actual. Distancia total recorrida: 8032.118854705603
 
 ## Comentarios finales
 El problema me pareció muy interesante, me gustó mucho resolverlo. Es el primer
