@@ -46,6 +46,7 @@ func resolverProblema(profundidad int, sucursales []sucursal, dimension int, cap
 				recorrido = recorridoActual
 			}
 		}
+		fmt.Printf("Paso %d/%d\n", i+1, profundidad)
 	}
 	elapsed := time.Since(start)
 
