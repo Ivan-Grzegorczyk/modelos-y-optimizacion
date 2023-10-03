@@ -17,8 +17,8 @@ func abrirArchivo(s string) *os.File {
 	return archivo
 }
 
-func cargarDatos(sucursales *[]sucursal, capacidad *int) {
-	archivo := abrirArchivo("cmd/resources/data.txt")
+func cargarDatos(nombreArchivo string, sucursales *[]sucursal, capacidad *int) {
+	archivo := abrirArchivo("cmd/resources/" + nombreArchivo)
 	defer func(archivo *os.File) {
 		err := archivo.Close()
 		if err != nil {
@@ -65,8 +65,8 @@ func moverseHasta(scanner *bufio.Scanner, line string) {
 	scanner.Scan()
 }
 
-func imprimirResultado(recorrido []sucursal) {
-	archivo, err := os.Create("entrega_primer_problema.txt")
+func imprimirResultado(nroProblema string, recorrido []sucursal) {
+	archivo, err := os.Create("entrega_" + nroProblema + "_problema.txt")
 	if err != nil {
 		panic(err)
 	}

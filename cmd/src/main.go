@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 )
 
 type sucursal struct {
@@ -14,34 +15,45 @@ type sucursal struct {
 func main() {
 	var sucursales []sucursal
 	var capacidad int
+	// primer, segundo
+	nroProblema := "segundo"
 
-	cargarDatos(&sucursales, &capacidad)
+	cargarDatos(nroProblema+"_problema.txt", &sucursales, &capacidad)
 
 	// Busco la sucursal más cercana a la actual que cumpla la capacidad y me muevo a la misma eliminando la anterior
 	dimension := len(sucursales)
-	distanciaTotal := math.Inf(1)
+	// Cantidad de combinaciones a probar
+	profundidad := 100 // Debe ser 1 ≤ profundidad ≤ dimension
+
+	recorrido := resolverProblema(profundidad, sucursales, dimension, capacidad)
+
+	// Imprimo el recorrido
+	imprimirResultado(nroProblema, recorrido) // Escribo el resultado en un archivo
+}
+
+func resolverProblema(profundidad int, sucursales []sucursal, dimension int, capacidad int) []sucursal {
+	distanciaMejorRecorrido := math.Inf(1)
 	var recorrido []sucursal
 
-	for i := 0; i < 150; i++ {
+	start := time.Now()
+	for i := 0; i < profundidad; i++ {
 		var distancia float64
 		var recorridoActual []sucursal
 		if sucursales[i].demanda >= 0 {
 			distancia, recorridoActual = calcularRecorrido(i, dimension, sucursales, capacidad)
-			if distancia < distanciaTotal {
-				distanciaTotal = distancia
+			if distancia < distanciaMejorRecorrido {
+				distanciaMejorRecorrido = distancia
 				recorrido = recorridoActual
 			}
 		}
 	}
+	elapsed := time.Since(start)
 
-	// Imprimo el recorrido
-	imprimirResultado(recorrido) // Escribo el resultado en un archivo
-	fmt.Println("El largo del recorrido es:", len(recorrido))
-	fmt.Println("La distancia total es:", distanciaTotal)
-	fmt.Println("******* Recorrido ********")
-	for _, sucursal := range recorrido {
-		print(sucursal.id, " ")
-	}
+	// Tiempo que tarda en ejecutarse
+	fmt.Printf("El programa tardó %s en ejecutarse\n", elapsed)
+	fmt.Printf("La distancia total es: %.2f", distanciaMejorRecorrido)
+
+	return recorrido
 }
 
 func calcularRecorrido(indiceInicial int, n int, sucursales []sucursal, capacidad int) (float64, []sucursal) {
@@ -64,6 +76,7 @@ func calcularRecorrido(indiceInicial int, n int, sucursales []sucursal, capacida
 		recorrido = append(recorrido, sucursalActual)
 		visitadas[indiceActual] = true
 	}
+	distanciaTotal += calcularDistancia(sucursalActual, sucursales[indiceInicial])
 	return distanciaTotal, recorrido
 }
 
