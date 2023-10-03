@@ -23,7 +23,7 @@ func main() {
 	// Busco la sucursal más cercana a la actual que cumpla la capacidad y me muevo a la misma eliminando la anterior
 	dimension := len(sucursales)
 	// Cantidad de combinaciones a probar
-	profundidad := 100 // Debe ser 1 ≤ profundidad ≤ dimension
+	profundidad := 400 // Debe ser 1 ≤ profundidad ≤ dimension
 
 	recorrido := resolverProblema(profundidad, sucursales, dimension, capacidad)
 
@@ -40,7 +40,7 @@ func resolverProblema(profundidad int, sucursales []sucursal, dimension int, cap
 		var distancia float64
 		var recorridoActual []sucursal
 		if sucursales[i].demanda >= 0 {
-			distancia, recorridoActual = calcularRecorrido(i, dimension, sucursales, capacidad)
+			distancia, recorridoActual = calcularRecorrido(i, dimension, sucursales, capacidad, distanciaMejorRecorrido)
 			if distancia < distanciaMejorRecorrido {
 				distanciaMejorRecorrido = distancia
 				recorrido = recorridoActual
@@ -57,7 +57,7 @@ func resolverProblema(profundidad int, sucursales []sucursal, dimension int, cap
 	return recorrido
 }
 
-func calcularRecorrido(indiceInicial int, n int, sucursales []sucursal, capacidad int) (float64, []sucursal) {
+func calcularRecorrido(indiceInicial int, n int, sucursales []sucursal, capacidad int, mejor float64) (float64, []sucursal) {
 	visitadas := make([]bool, n)
 	distanciaTotal := float64(0)
 	var recorrido []sucursal
@@ -72,6 +72,9 @@ func calcularRecorrido(indiceInicial int, n int, sucursales []sucursal, capacida
 		indiceSiguiente, sucursalSiguiente := calcularSiguiente(sucursalActual, sucursales, visitadas, cargaActual, capacidad)
 		indiceActual = indiceSiguiente
 		distanciaTotal += calcularDistancia(sucursalActual, sucursalSiguiente)
+		if distanciaTotal >= mejor {
+			return math.Inf(1), nil
+		}
 		sucursalActual = sucursalSiguiente
 		cargaActual += sucursalActual.demanda
 		recorrido = append(recorrido, sucursalActual)

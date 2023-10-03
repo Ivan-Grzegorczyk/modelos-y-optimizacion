@@ -67,6 +67,22 @@ intentar optimizarlo más.
   el tiempo de ejecución para poder aumentar la profundidad y obtener un mejor resultado.
   Distancia total recorrida: 939034.02
   Tiempo de ejecución: 6 min 27 s
+* Segunda entrega:
+  En el algoritmo que planteé se calculan más de 340 millones de distancias, este número habría además que multiplicarlo
+  por la profundidad que se elija. Esto hace que el tiempo de ejecución sea muy alto.
+  ```math
+  profundidad(n² - n) = #distancias que se calculan , donde n = cantidad de sucursales
+  ```
+  Quise agregar como optimización una caché de distancias que evite tener que calcular dos veces lo mismo, por ejemplo
+  si ya calculé la distancia entre i y j no tendría sentido calcular la distancia entre j e i. Pero esto hizo que el
+  tiempo de ejecución creciera muchísimo debido a que almacenar el total de distancias es demasiado. Igualmente,
+  terminé notando que esto no tenía sentido, ya que al usar un slice de sucursales ya visitadas evito calcular dos veces
+  lo mismo. Lo que si hice para optimizar fue agregar un criterio de corte más rápido para el cálculo de cada recorrido.
+  Ahora le paso la mejor distancia a la función que se encarga de calcular el recorrido. De esta forma si el recorrido
+  que se está calculando es peor simplemente se ignora. Usando esta optimización se mejora muy poco tiempo el de
+  ejecución, pero noté mejoras en algunas pruebas. Para esta entrega aumenté la profundidad a 400.
+  Distancia total recorrida: 931870.54
+  Tiempo de ejecución: 29 min 11 s
 
 ### Comentarios finales
 
