@@ -83,6 +83,13 @@ intentar optimizarlo más.
   ejecución, pero noté mejoras en algunas pruebas. Para esta entrega aumenté la profundidad a 400.
   Distancia total recorrida: 931870.54
   Tiempo de ejecución: 29 min 11 s
+* Tercera entrega:
+  Para esta entrega por fin pude justificar el uso de Go, es mi primera experiencia usando goroutines y quedé muy
+  sorprendido. Lo que hice fue calcular todos los recorridos empezando desde cada una de las 18512 sucursales en
+  paralelo. Esto hizo que el tiempo de ejecución se redujera muchísimo permitiéndome asi aumentar la profundidad al
+  máximo y lograr el mejor resultado posible para este algoritmo.
+  Distancia total recorrida: 925098.61
+  Tiempo de ejecución: 2 h 15 min 32 s
 
 ### Comentarios finales
 
